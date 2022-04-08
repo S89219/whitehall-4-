@@ -10,6 +10,7 @@ class LinkableTopics
     items = fetch_linkables_from_publishing_api(document_type: "topic")
     items = change_separator(items)
     items = select_only_subtopics(items)
+    items = filter_browse_topics(items)
     format_for_select_input(items)
   end
 
@@ -39,6 +40,17 @@ private
   # but not https://www.gov.uk/topic/business-tax
   def select_only_subtopics(all_topics)
     all_topics.select { |item| item.fetch("internal_name").include?(": ") }
+  end
+
+  # While we're migrating the Browse pages to topics we will briefly have a combination of the
+  # two in our model. We need to filter out the pages we brought across from the results.
+  def filter_browse_topics(all_topics)
+    return items if items.first.fetch("base_path").exclude?("/topic/")
+    #byebug
+
+    items.select { |item| 
+      Services.publishing_api.get_content(item.fetch("content_id")).to_h.fetch("details").fetch("mainstream_browse_origin", "null").include?("null")
+    }
   end
 
   def format_for_select_input(items)
