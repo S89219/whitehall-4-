@@ -22,11 +22,12 @@ class SpecialistTagFinder
   end
 
   def top_level_topic
-    # Topics in GOVUK (called 'Specialist Sectors' in  Whitehall admin and
-    # throughout this codebase) exist in a 2-level hierarchy.  Editions may be
-    # tagged with a parent - this is always one of the 2nd level topics.  The
-    # top level topic (i.e. - the parent of the edition's parent) is required
-    # in the frontend when rendering an Edition's breadcrumb.
+    # Topics in GOV.UK (called 'Specialist topics', formly 'Specialist sectors'
+    # in  Whitehall admin and throughout this codebase) exist in a 2-level
+    # hierarchy. Editions may be tagged with a parent tagged with a parent -
+    # this is always one of the 2nd level topics. The top level topic (i.e.
+    # the parent of the edition's parent) is required in the frontend when
+    # rendering an Edition's breadcrumb.
     @top_level_topic ||= begin
       return unless edition_content_item
 

@@ -1,11 +1,11 @@
 <section>
-  <h2>Associations
+  <h2>Specialist topic tags
     <% if edition.pre_publication? %>
       <%= link_to path_to_edit_associations, class: "btn btn-default pull-right" do %>
         <% if edition.has_legacy_tags? %>
-          <span class="glyphicon glyphicon-edit"></span> Change Associations
+          <span class="glyphicon glyphicon-edit"></span> Change specialist topic tags
         <% else %>
-          <span class="glyphicon glyphicon-plus-sign"></span> Add Associations
+          <span class="glyphicon glyphicon-plus-sign"></span> Add specialist topic tags
         <% end %>
       <% end %>
     <% end %>
@@ -13,7 +13,7 @@
   <% if edition.has_legacy_tags? %>
     <div class="content content-bordered">
       <% if edition.has_primary_sector? %>
-        <h4>Primary Specialist Sector</h4>
+        <h4>Primary specialist topic</h4>
         <ul class="primary-specialist-sector">
           <li><%= specialist_sector_name(edition.primary_specialist_sector_tag) %></li>
         </ul>

@@ -5,8 +5,7 @@
 <%= edition_editing_tabs(edition) do %>
   <%= standard_edition_form(edition, @information) do |form| %>
     <fieldset>
-      <legend>Associations</legend>
-      <p>You'll be able to select specialist sectors later.</p>
+      <legend>Specialist topic tags</legend>
       <%= render 'worldwide_organisation_fields', form: form, edition: edition %>
       <%= render 'world_location_fields', form: form, edition: edition %>
       <%= render 'organisation_fields', form: form, edition: edition %>
